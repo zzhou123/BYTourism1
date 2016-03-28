@@ -16,5 +16,15 @@
     <string name="my_collect">我的收藏</string>
     <string name="sight_information">景点详情</string>
     <string name="collect">收藏</string>
+    <string name="s_city">选择城市</string>
+    <string name="bj">北京</string>
+    <string name="sh">上海</string>
+    <string name="xm">厦门</string>
+    <string name="my_city">自定义城市</string>
+    <string name="path">路线</string>
+    <string name="invite">邀请</string>
+    <string name="scenic">景点</string>
+    <string name="gragshop">酒店收藏</string>
+    <string name="ticket">门票收藏</string>
 
 </resources>
