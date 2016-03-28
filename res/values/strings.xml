@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ByTourism1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="home_string">主页</string>
+    <string name="discount_string">打折</string>
+    <string name="my_string">我的</string>
+    <string name="more_string">更多</string>
+    <string name="search_name">搜索</string>
+    <string name="login_name">请点击登入</string>
+    <string name="evaluate">评价</string>
+    <string name="my_track">我的足迹</string>
+    <string name="my_friend">我的好友</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="sight_information">景点详情</string>
+    <string name="collect">收藏</string>
+
+</resources>
