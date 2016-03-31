@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        >
+<RelativeLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+   
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
@@ -11,15 +15,15 @@
 
         <Spinner
             android:id="@+id/spinner1"
-            android:layout_width="70dp"
-            android:layout_height="35dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="5dp"
-            />
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="9dp" />
 
         <EditText
             android:id="@+id/edit_Search1"
-            android:layout_width="190dp"
+            android:layout_width="210dp"
             android:layout_height="30dp"
             android:layout_alignBottom="@+id/spinner1"
             android:layout_alignParentTop="true"
@@ -30,15 +34,25 @@
             android:drawableLeft="@drawable/mirror"
             android:hint="@string/search_name" >
         </EditText>
-
+         <ImageButton
+            android:id="@+id/imagebutton1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/edit_Search1"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/person" />
         <ImageButton
             android:id="@+id/imagebutton2"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:layout_toRightOf="@+id/edit_Search1"
-              android:layout_marginTop="9dp"
+            android:layout_alignTop="@+id/imagebutton1"
+            android:layout_toRightOf="@+id/imagebutton1"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/dimenson" />
+
+       
        
     </RelativeLayout>
 
@@ -159,4 +173,6 @@
         android:layout_toRightOf="@+id/imagefive"
         android:src="@drawable/home_two" />
 
+
 </RelativeLayout>
+    </ScrollView>
