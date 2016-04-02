@@ -20,8 +20,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="9dp" />
-
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_Search1"
             android:layout_width="210dp"
             android:layout_height="30dp"
@@ -32,8 +31,11 @@
             android:layout_toRightOf="@+id/spinner1"
             android:background="@drawable/input_search"
             android:drawableLeft="@drawable/mirror"
-            android:hint="@string/search_name" >
-        </EditText>
+            android:hint="@string/search_name" 
+            android:imeOptions="actionSearch"
+            android:completionThreshold="1" 
+            >
+        </AutoCompleteTextView>
          <ImageButton
             android:id="@+id/imagebutton1"
             android:layout_width="30dp"
@@ -57,6 +59,7 @@
     </RelativeLayout>
 
     <TabHost
+        
         android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
