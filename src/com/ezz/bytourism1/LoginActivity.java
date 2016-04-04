@@ -78,9 +78,13 @@ public class LoginActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent=new Intent(LoginActivity.this,RegistActivity.class);  //方法1
+                Intent intent = new Intent(LoginActivity.this,RegistActivity.class);  //方法1
                 startActivity(intent);
             }
         });
+    }
+    public void regist(){
+        Intent intent = new Intent(LoginActivity.this,RegistActivity.class);  //方法1
+        startActivity(intent);
     }
 }
