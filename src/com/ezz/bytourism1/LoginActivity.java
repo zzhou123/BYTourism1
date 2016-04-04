@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity{
                         }
                     });
                 }else{
-                    Toast tst = Toast.makeText(LoginActivity.this, "账号或密码输入有误,请检查后输入", Toast.LENGTH_SHORT);
+                    Toast tst = Toast.makeText(LoginActivity.this, "请求失败", Toast.LENGTH_SHORT);
                     tst.show();
                 }
 
