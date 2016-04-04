@@ -113,7 +113,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    >
+	android:weightSum="1">
 
 		<TextView
 		    android:id="@+id/textView5"
@@ -121,16 +121,21 @@
 		    android:layout_height="wrap_content"
 		    android:text="用户性别:" />
 
-		<EditText
-		    android:id="@+id/sex"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
-		    android:ems="10" 
-		    android:singleLine="true">
-		 <requestFocus />
-   </EditText>
-   <TextView
+		<RadioGroup
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_weight="0.75" android:id="@+id/sex">
+			<RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="男"
+                    android:id="@+id/male" android:checked="true"/>
+			<RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女"
+                    android:id="@+id/female" android:checked="false"/>
+		</RadioGroup>
+		<TextView
 		    android:id="@+id/textView6"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
@@ -138,10 +143,9 @@
 
 		<EditText
 		    android:id="@+id/age"
-		    android:layout_width="fill_parent"
+		    android:layout_width="177dp"
 		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
-		    android:ems="10" 
+			android:ems="10"
 		    android:singleLine="true">
 		 <requestFocus />
    </EditText>
@@ -184,6 +188,12 @@
 		    android:text="用户邮箱:" />
 
 		<EditText
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:inputType="time"
+				android:ems="10"
+				android:id="@+id/editText" android:layout_weight="1"/>
+		<EditText
 		    android:id="@+id/email"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
@@ -200,6 +210,10 @@
     android:orientation="horizontal"
     >
 
+		<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/imageView"/>
 		<TextView
 		    android:id="@+id/textView9"
 		    android:layout_width="wrap_content"
@@ -207,7 +221,7 @@
 		    android:text="联系方式:" />
 
 		<EditText
-		    android:id="@+id/editText9"
+		    android:id="@+id/telphone"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
@@ -244,35 +258,23 @@
 		    android:layout_height="wrap_content"
 		    android:text="标签选择:" />
 
-		<Button
-		    android:id="@+id/button1"
-		    style="?android:attr/buttonStyleSmall"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="标签1" />
+				<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="休闲游"
+						android:id="@+id/label1" android:checked="false"/>
+				<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="历史游"
+						android:id="@+id/label2" android:checked="false"/>
+				<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="户外游"
+						android:id="@+id/label3" android:checked="false"/>
 
-		<Button
-		    android:id="@+id/button2"
-		    style="?android:attr/buttonStyleSmall"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="标签2" />
-
-		<Button
-		    android:id="@+id/button3"
-		    style="?android:attr/buttonStyleSmall"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="标签3" />
-
-		<Button
-		    android:id="@+id/button4"
-		    style="?android:attr/buttonStyleSmall"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="标签4" />
-
-		</LinearLayout>
+			</LinearLayout>
 	
 	<LinearLayout 
     android:layout_width="fill_parent"
@@ -291,18 +293,18 @@
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentTop="true"
 	    android:layout_marginRight="18dp"
-	    android:layout_toLeftOf="@+id/submit"
+	    android:layout_toLeftOf="@+id/registsubmit"
 	    android:text="重置" />
 
 	<Button
-	    android:id="@+id/submit"
-	    style="?android:attr/buttonStyleSmall"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentRight="true"
-	    android:layout_alignParentTop="true"
-	    android:layout_marginRight="85dp"
-	    android:text="注册" />
+			android:id="@+id/registsubmit"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginRight="85dp"
+			android:text="注册" android:onClick="registsubmit"/>
 
 		</RelativeLayout>	
 		</LinearLayout>
