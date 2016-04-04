@@ -1,3 +1,4 @@
+
 package com.ezz.bytourism1;
 
 
@@ -54,7 +55,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
  	int a = 0;
  	@Override
  	protected void onCreate(Bundle savedInstanceState) {
- 		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+ 		// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  		super.onCreate(savedInstanceState);
  		
  		setContentView(R.layout.allsightdetail);
@@ -70,24 +71,24 @@ public class AllSightDetail extends Activity implements OnClickListener{
  		city_list = new ArrayList<String>();
  		dataList = new ArrayList<Map<String, Object>>();
 
- 		city_list.add("±±¾©");
- 		city_list.add("ÉÏº£");
- 		city_list.add("ÏÃÃÅ");
- 		city_list.add("¹ãÖÝ"); 
- 		city_list.add("ÔÆÄÏ");
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½");
+ 		city_list.add("ï¿½Ïºï¿½");
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½");
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½"); 
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½");
  		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, city_list);
  		edit_Search1.setAdapter(adapter);
  		
  		find_btn.setOnClickListener(this);
  		
- 		//ËÑË÷¿òÊäÈëÊ±£¬µ¥»÷»Ø³µ
+ 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½
  		/*		edit_Search1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				if(actionId==EditorInfo.IME_ACTION_SEND||(event!=null&&event.getKeyCode()==KeyEvent.KEYCODE_ENTER)){
-					Toast.makeText(AllSightDetail.this, "¿ªÊ¼ËÑË÷"+city_name, Toast.LENGTH_SHORT).show();
+					Toast.makeText(AllSightDetail.this, "ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½"+city_name, Toast.LENGTH_SHORT).show();
 					getData();
 					return true;
 				}
@@ -95,7 +96,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
 			}
 
 			private void query() {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				
 			}
 			
@@ -104,7 +105,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
 			
 			@Override
 			public void onClick(View v) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù     
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½     
 				Intent intent = new Intent(AllSightDetail.this,MainActivity.class);
 				startActivity(intent);
 			}
@@ -113,7 +114,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
  	Handler handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Object scienc;
 				switch (msg.what) {
 				case 1:
@@ -169,18 +170,18 @@ public class AllSightDetail extends Activity implements OnClickListener{
 
 			@Override
 			public void onError(int arg0, String arg1) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Toast.makeText(AllSightDetail.this,"fail136"+ arg0+" "+arg1,Toast.LENGTH_SHORT).show();
 			}
 
 			@Override
 			public void onSuccess(List<City> citysList) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 				
 				Map<String,Object> city_map = new HashMap<String,Object>();
 				
-				int cityid = citysList.get(0).getId();//city±íÖÐµÄid
+				int cityid = citysList.get(0).getId();//cityï¿½ï¿½ï¿½Ðµï¿½id
 				BmobQuery<Scenicroute> query_sroute = new BmobQuery<Scenicroute>();
 				query_sroute.addWhereEqualTo("cityid", cityid);
 				Toast.makeText(AllSightDetail.this,cityid+"====>187",Toast.LENGTH_SHORT).show();
@@ -189,8 +190,8 @@ public class AllSightDetail extends Activity implements OnClickListener{
 					
 					@Override
 					public void onSuccess(List<Scenicroute> sroutes) {
-						// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
-						for(Scenicroute sroute:sroutes){//ÕÒµ½ÔÚScenicroute±íÏÂÃæµÄÂ·Ïß
+						// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						for(Scenicroute sroute:sroutes){//ï¿½Òµï¿½ï¿½ï¿½Scenicrouteï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 	
 							Toast.makeText(AllSightDetail.this,sroutes.size()+"===>196",Toast.LENGTH_SHORT).show();
 							
@@ -203,12 +204,12 @@ public class AllSightDetail extends Activity implements OnClickListener{
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
 									@Override
 									public void onError(int arg0, String arg1) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Toast.makeText(AllSightDetail.this,"fail!!"+arg0+arg1, Toast.LENGTH_SHORT).show();
 									}
 									@Override
 									public void onSuccess(List<Scenic> ascenic) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Map<String,Object> city_map = new HashMap<String,Object>();
 										city_map.put("sight_view", ascenic.get(0).getScenicview());
 										city_map.put("sight_name",ascenic.get(0).getScenicname());
@@ -231,12 +232,12 @@ public class AllSightDetail extends Activity implements OnClickListener{
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
 									@Override
 									public void onError(int arg0, String arg1) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Log.i("fail!!!!!!!!!183", arg0+" "+arg1);
 									}
 									@Override
 									public void onSuccess(List<Scenic> ascenic) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Map<String,Object> city_map = new HashMap<String,Object>();
 										city_map.put("sight_view", ascenic.get(0).getScenicview());
 										city_map.put("sight_name",ascenic.get(0).getScenicname());
@@ -260,11 +261,11 @@ public class AllSightDetail extends Activity implements OnClickListener{
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
 									@Override
 									public void onError(int arg0, String arg1) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Log.i("tag!!!!!!", "209 "+arg0+" "+arg1);
 									}
 									public void onSuccess(List<Scenic> scenic) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Toast.makeText(AllSightDetail.this, scenic.size()+"", Toast.LENGTH_SHORT).show();
 										Map<String,Object> city_map = new HashMap<String,Object>();
 										city_map.put("sight_view", scenic.get(0).getScenicview());
@@ -288,12 +289,12 @@ public class AllSightDetail extends Activity implements OnClickListener{
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
 									@Override
 									public void onError(int arg0, String arg1) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Log.i("fail!!!!!!!!!236", arg0+" "+arg1);
 									}
 									@Override
 									public void onSuccess(List<Scenic> ascenic) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Map<String,Object> city_map = new HashMap<String,Object>();
 										city_map.put("sight_view", ascenic.get(0).getScenicview());
 										city_map.put("sight_name", ascenic.get(0).getScenicname());
@@ -316,12 +317,12 @@ public class AllSightDetail extends Activity implements OnClickListener{
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
 									@Override
 									public void onError(int arg0, String arg1) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Log.i("fail!!!!!!!!!262", arg0+" "+arg1);
 									}
 									@Override
 									public void onSuccess(List<Scenic> ascenic) {
-										// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 										Map<String,Object> city_map = new HashMap<String,Object>();
 										city_map.put("sight_view", ascenic.get(0).getScenicview());
 										city_map.put("sight_name",ascenic.get(0).getScenicname());
@@ -344,7 +345,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
 					}
 					@Override
 					public void onError(int arg0, String arg1) {
-						// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+						// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						Log.i("fail!!!!!!!!!284", arg0+" "+arg1);
 					}
 				});
@@ -357,7 +358,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
 	
 	@Override
 	public void onClick(View v) {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		getData();
 		

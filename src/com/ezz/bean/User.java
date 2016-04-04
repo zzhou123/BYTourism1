@@ -1,9 +1,22 @@
 package com.ezz.bean;
 
+import android.util.Log;
+import android.widget.Toast;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
+
+import java.util.List;
+import java.util.StringTokenizer;
+
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by 37492 on 2016/4/4.
  */
-public class User {
+public class User extends BmobObject{
+    private String id;
     private String username;
     private String password;
     private String realname;
@@ -103,4 +116,9 @@ public class User {
     public void setIntro(String intro) {
         this.intro = intro;
     }
+
+    public String getId(){
+        return id;
+    }
+
 }
