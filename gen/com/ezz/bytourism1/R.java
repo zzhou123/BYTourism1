@@ -59,7 +59,7 @@ public final class R {
         public static final int button3=0x7f08003a;
         public static final int button4=0x7f08004b;
         public static final int button5=0x7f08004c;
-        public static final int button6=0x7f08004d;
+        public static final int submit =0x7f08004d;
         public static final int buttoninvite=0x7f080033;
         public static final int buttonpath=0x7f080035;
         public static final int buttonscenic=0x7f080034;
