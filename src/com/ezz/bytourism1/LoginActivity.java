@@ -55,6 +55,7 @@ public class LoginActivity extends BaseActivity{
                             User user = list.get(0);
                             String id = user.getId();
                             if(!id.isEmpty()){
+                                savePreference(USER_ID,id);
                                 Intent intent=new Intent(LoginActivity.this,RegistActivity.class);  //·½·¨1
                                 startActivity(intent);
                             }

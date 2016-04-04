@@ -8,6 +8,8 @@ import android.os.Bundle;
  * Created by johnchen on 16/4/4.
  */
 public class BaseActivity  extends Activity{
+
+    public static final String USER_ID = "user_id";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO
@@ -15,33 +17,31 @@ public class BaseActivity  extends Activity{
 
     }
 
-    // è®°å½•çš„ç”µè¯å·ç 
-    private String phoneNum;
     /**
-     * å°†æ­¤æ¬¡ç™»é™†çš„è´¦æˆ·ä¿¡æ¯å­˜å‚¨ä¸‹æ¥
+     * ½«´Ë´ÎµÇÂ½µÄÕË»§ĞÅÏ¢´æ´¢ÏÂÀ´
      * */
-    private void saveAccount(String phoneNum) {
-        // è·å–SharedPreference
-        SharedPreferences preference = getSharedPreferences("login_info",
+    protected void savePreference(String key , String value) {
+        // »ñÈ¡SharedPreference
+        SharedPreferences preference = getSharedPreferences("android",
                 MODE_PRIVATE);
-        // è·å–editor
+        // »ñÈ¡editor
         SharedPreferences.Editor editor = preference.edit();
-        // å­˜å…¥æ•°æ®
-        editor.putString("phoneNum", phoneNum);
-        // æäº¤å­˜å…¥æ–‡ä»¶ä¸­
+        // ´æÈëÊı¾İ
+        editor.putString(key, value);
+        // Ìá½»´æÈëÎÄ¼şÖĞ
         editor.commit();
     }
     /**
-     * è·å–å­˜å…¥SharedPreferenceä¸­çš„è´¦æˆ·
+     * »ñÈ¡´æÈëSharedPreferenceÖĞµÄÕË»§
      *
      * @return
      * */
-    private void getAccount() {
-        // è·å–SharedPreference
-        SharedPreferences preference = getSharedPreferences("login_info",
+    protected String getPreference(String key) {
+        // »ñÈ¡SharedPreference
+        SharedPreferences preference = getSharedPreferences("android",
                 MODE_PRIVATE);
-        // è·å–å­˜åœ¨SharedPreferenceä¸­çš„ç”¨æˆ·å
-        phoneNum = preference.getString("phoneNum", "");
+        // »ñÈ¡´æÔÚSharedPreferenceÖĞµÄÓÃ»§Ãû
+        return  preference.getString(key, "");
 
     }
 }
