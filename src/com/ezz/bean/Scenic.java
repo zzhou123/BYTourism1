@@ -9,6 +9,10 @@ public class Scenic {
 	private int cityid;
 	private int avggrade;
 	private int gradenum;
+	private String scenicview;
+	private int scenicprice;
+	private  String scenictype;
+	
 	public int getId() {
 		return id;
 	}
@@ -44,6 +48,24 @@ public class Scenic {
 	}
 	public void setGradenum(int gradenum) {
 		this.gradenum = gradenum;
+	}
+	public String getScenicview() {
+		return scenicview;
+	}
+	public void setScenicview(String scenicview) {
+		this.scenicview = scenicview;
+	}
+	public int getScenicprice() {
+		return scenicprice;
+	}
+	public void setScenicprice(int scenicprice) {
+		this.scenicprice = scenicprice;
+	}
+	public String getScenictype() {
+		return scenictype;
+	}
+	public void setScenictype(String scenictype) {
+		this.scenictype = scenictype;
 	}
 	
 }
