@@ -1,6 +1,5 @@
 package com.ezz.bytourism1;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -56,7 +55,7 @@ public class LoginActivity extends BaseActivity{
                             String id = user.getId();
                             if(!id.isEmpty()){
                                 savePreference(USER_ID,id);
-                                Intent intent=new Intent(LoginActivity.this,RegistActivity.class);  //方法1
+                                Intent intent=new Intent(LoginActivity.this,Personal_centerActivity.class);  //方法1
                                 startActivity(intent);
                             }
                         }
@@ -67,8 +66,8 @@ public class LoginActivity extends BaseActivity{
                         }
                     });
                 }else{
-                    Toast tst = Toast.makeText(LoginActivity.this, "请求失败", Toast.LENGTH_SHORT);
-                    tst.show();
+                    Toast.makeText(LoginActivity.this, "123error", Toast.LENGTH_SHORT).show();
+
                 }
 
             }

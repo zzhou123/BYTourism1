@@ -1,6 +1,6 @@
 package com.ezz.bytourism1;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by 37492 on 2016/4/4.
  */
-public class RegistActivity extends Activity{
+public class RegistActivity extends BaseActivity{
     private String username,password,repassword,realname,telphone,school,email,intro,sex,label="";
     private int age;
 
@@ -28,6 +28,7 @@ public class RegistActivity extends Activity{
 
 
     }
+
     public void registsubmit(View view){
         EditText uname = (EditText)findViewById(R.id.username);
         EditText pwd = (EditText)findViewById(R.id.password);
@@ -50,14 +51,16 @@ public class RegistActivity extends Activity{
 //        });
 
         CheckBox c1 = (CheckBox)findViewById(R.id.label1);
-        CheckBox c2 = (CheckBox)findViewById(R.id.label2);
-        CheckBox c3 = (CheckBox)findViewById(R.id.label3);
+        //CheckBox c2 = (CheckBox)findViewById(R.id.label2);
+        //CheckBox c3 = (CheckBox)findViewById(R.id.label3);
         username = uname.getText().toString();
         password = pwd.getText().toString();
         repassword = repwd.getText().toString();
         realname = realn.getText().toString();
         sex = usex.getText().toString();
-        age = Integer.parseInt(uage.getText().toString());
+        if(!uage.getText().toString().isEmpty()){
+            age = Integer.parseInt(uage.getText().toString());
+        }
         telphone = utel.getText().toString();
         school = uschool.getText().toString();
         email = uemail.getText().toString();
@@ -66,12 +69,12 @@ public class RegistActivity extends Activity{
         if(c1.isChecked()){
             label = c1.getText().toString()+label;
         }
-        if(c2.isChecked()){
-            label = c2.getText().toString()+label;
-        }
-        if(c3.isChecked()){
-            label = c3.getText().toString()+label;
-        }
+//        if(c2.isChecked()){
+//            label = c2.getText().toString()+label;
+//        }
+//        if(c3.isChecked()){
+//            label = c3.getText().toString()+label;
+//        }
 
         if(username.equals("")|password.equals("")|repassword.equals("")){
             Toast.makeText(RegistActivity.this,"昵称或密码不能为空",Toast.LENGTH_LONG).show();
@@ -90,8 +93,9 @@ public class RegistActivity extends Activity{
                 @Override
                 public void onSuccess(List<User> list) {
                    // if (list.get(0).getUsername().equals(username)) {
+                    //Toast.makeText(RegistActivity.this, list.get(0).getUsername(), Toast.LENGTH_LONG).show();
                     Toast.makeText(RegistActivity.this, "用户昵称已被使用过，请修改用户昵称", Toast.LENGTH_LONG).show();
-                    Toast.makeText(RegistActivity.this, list.get(0).getUsername(), Toast.LENGTH_LONG).show();
+
                 }
                 @Override
                 public void onError(int code, String msg) {
@@ -111,12 +115,32 @@ public class RegistActivity extends Activity{
                     userObj.save(RegistActivity.this, new SaveListener() {
                         @Override
                         public void onSuccess() {
-                            Toast.makeText(RegistActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+                            savePreference(USER_NAME,username);
+                            BmobQuery<User> queryId = new BmobQuery<User>();
+                            queryId.addWhereEqualTo("username", username);
+
+                            queryId.findObjects(RegistActivity.this, new FindListener<User>() {
+                                @Override
+                                public void onSuccess(List<User> list) {
+                                    String userid = list.get(0).getId();
+                                    savePreference(USER_ID,userid);
+                                    Intent intent = new Intent(RegistActivity.this,Personal_centerActivity.class);  //方法1
+                                    startActivity(intent);
+                                    Toast.makeText(RegistActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+                                }
+
+                                @Override
+                                public void onError(int i, String s) {
+                                    Toast.makeText(RegistActivity.this, "Perference失败:"+s, Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+
                         }
 
                         @Override
                         public void onFailure(int i, String s) {
-                            Toast.makeText(RegistActivity.this, "注册失败", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegistActivity.this, "注册失败:"+s, Toast.LENGTH_LONG).show();
 
                         }
                     });

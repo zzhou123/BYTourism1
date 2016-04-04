@@ -10,6 +10,7 @@ import android.os.Bundle;
 public class BaseActivity  extends Activity{
 
     public static final String USER_ID = "user_id";
+    public static final String USER_NAME = "user_name";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO

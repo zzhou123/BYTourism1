@@ -138,13 +138,13 @@
 		<TextView
 		    android:id="@+id/textView6"
 		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
+		    android:layout_height="30dp"
 		    android:text="用户年龄:" />
 
 		<EditText
 		    android:id="@+id/age"
-		    android:layout_width="177dp"
-		    android:layout_height="wrap_content"
+		    android:layout_width="92dp"
+		    android:layout_height="43dp"
 			android:ems="10"
 		    android:singleLine="true">
 		 <requestFocus />
@@ -187,12 +187,6 @@
 		    android:layout_height="wrap_content"
 		    android:text="用户邮箱:" />
 
-		<EditText
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:inputType="time"
-				android:ems="10"
-				android:id="@+id/editText" android:layout_weight="1"/>
 		<EditText
 		    android:id="@+id/email"
 		    android:layout_width="fill_parent"
@@ -295,18 +289,14 @@
 	    android:layout_marginRight="18dp"
 	    android:layout_toLeftOf="@+id/registsubmit"
 	    android:text="重置" />
+		<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="注册"
+				android:id="@+id/registsubmit" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
+				android:onClick="registsubmit"/>
 
-	<Button
-			android:id="@+id/registsubmit"
-			style="?android:attr/buttonStyleSmall"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentRight="true"
-			android:layout_alignParentTop="true"
-			android:layout_marginRight="85dp"
-			android:text="注册" android:onClick="registsubmit"/>
-
-		</RelativeLayout>	
+	</RelativeLayout>
 		</LinearLayout>
 		
 			 </LinearLayout>   
