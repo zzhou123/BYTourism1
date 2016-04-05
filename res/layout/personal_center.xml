@@ -51,7 +51,7 @@
               android:id="@+id/textView2"
               android:layout_width="97dp"
               android:layout_height="wrap_content"
-              android:text="用户昵称："
+              android:text="昵  称："
               android:textAppearance="?android:attr/textAppearanceMedium"
               android:layout_alignParentTop="true" android:layout_toEndOf="@+id/imageView1"
               android:layout_marginStart="30dp"/>
