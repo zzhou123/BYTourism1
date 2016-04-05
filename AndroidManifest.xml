@@ -17,24 +17,38 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.ezz.bytourism1.MainActivity"
             android:label="@string/app_name" >
-           <!--  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
         </activity>
-        <activity android:name=".AllSightDetail"
+
+        <activity
+            android:name=".RegistActivity"
             android:label="@string/app_name" >
+    </activity>
+        <activity
+                android:name=".AllSightDetail"
+                android:label="@string/app_name" >
+        </activity>
+        <activity
+                android:name=".Choose1Activity"
+                android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+                android:name=".Personal_centerActivity"
+                android:launchMode="singleTask"
+                android:label="@string/app_name" >
+        </activity>
+        <activity android:name=".LoginActivity"
+                  android:label="ByTourisim1" >
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class SightDetail extends Activity{
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.sight_detail);
-	}
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+			// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.sight_detail);
+		}
 }

@@ -28,8 +28,11 @@
     <string name="my_city">自定义城市</string>
     <string name="path">路线</string>
     <string name="invite">邀请</string>
+
     <string name="scenic">景点</string>
     <string name="gragshop">酒店收藏</string>
     <string name="ticket">门票收藏</string>
 	<string name="cultural_religion">宗教文化</string>
+    <string name="signout">未登录</string>
+    <string name="signin">已登录</string>
 </resources>

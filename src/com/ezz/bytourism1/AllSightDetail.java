@@ -1,19 +1,34 @@
+
 package com.ezz.bytourism1;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.security.auth.PrivateCredentialPermission;
+
+import org.json.JSONArray;
+
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindCallback;
+import cn.bmob.v3.listener.FindListener;
 
+import com.a.a.a.Tempest;
+import com.ezz.bean.City;
 import com.ezz.bean.Scenic;
+import com.ezz.bean.Scenicroute;
 
 import android.R.integer;
+import android.R.string;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,47 +41,54 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AllSightDetail extends Activity{
+public class AllSightDetail extends Activity implements OnClickListener{
 	private Button btn_back;
 	private AutoCompleteTextView edit_Search1;
 	private List<String> city_list;
  	private ArrayAdapter<String> adapter;
  	private ListView city_listview;
- 	private SimpleAdapter sadapter;
+ 	public SimpleAdapter sadapter;
  	private List<Map<String,Object>> dataList;
- 	private Map<integer, Map<String,Object>> a;
-	@Override
+ 	private Button find_btn;
+ 	private String city_name;
+ 	private static final ThreadLocal re = new ThreadLocal();
+ 	int a = 0;
+ 	@Override
  	protected void onCreate(Bundle savedInstanceState) {
- 		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+ 		// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  		super.onCreate(savedInstanceState);
+ 		
  		setContentView(R.layout.allsightdetail);
- 		btn_back = (Button) findViewById(R.id.btn_back);
+ 		Bmob.initialize(AllSightDetail.this, "a1a4ff643e92be99bb8649e33589c596");
+ 		Intent searchIntent = getIntent();
+ 		city_name = searchIntent.getStringExtra("city_name");
  		edit_Search1 = (AutoCompleteTextView) findViewById(R.id.edit_Search1);
+ 		edit_Search1.setText(city_name);
+ 		find_btn = (Button) findViewById(R.id.find_btn);
+ 		btn_back = (Button) findViewById(R.id.btn_back);
+ 		
  		city_listview = (ListView) findViewById(R.id.city_listview);
  		city_list = new ArrayList<String>();
- 		dataList = new ArrayList<Map<String,Object>>();
- 		Map<String,Object> map = new HashMap<String,Object>();
- 		map.put("name1", "lucy");
- 		map.put("name2", "dawei");
- 		map.put("name3", "lucy");
- 		map.put("name4", 3);
- 		map.put("name4",city_list);
- 		map.get("name1");
- 		city_list.add("±±¾©");
- 		city_list.add("ÉÏº£");
- 		city_list.add("ÏÃÃÅ");
- 		city_list.add("¹ãÖÝ");
- 		city_list.add("ÔÆÄÏ");
+ 		dataList = new ArrayList<Map<String, Object>>();
+
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½");
+ 		city_list.add("ï¿½Ïºï¿½");
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½");
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½"); 
+ 		city_list.add("ï¿½ï¿½ï¿½ï¿½");
  		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, city_list);
- 	//	sadapter = new SimpleAdapter(this, getData(), resource, from, to);
  		edit_Search1.setAdapter(adapter);
- 		edit_Search1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+ 		
+ 		find_btn.setOnClickListener(this);
+ 		
+ 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½
+ 		/*		edit_Search1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				if(actionId==EditorInfo.IME_ACTION_SEND||(event!=null&&event.getKeyCode()==KeyEvent.KEYCODE_ENTER)){
-					Toast.makeText(AllSightDetail.this, "¿ªÊ¼ËÑË÷", Toast.LENGTH_SHORT).show();
+					Toast.makeText(AllSightDetail.this, "ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½"+city_name, Toast.LENGTH_SHORT).show();
 					getData();
 					return true;
 				}
@@ -74,35 +96,284 @@ public class AllSightDetail extends Activity{
 			}
 
 			private void query() {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				
 			}
 			
-		});
+		});*/
  		btn_back.setOnClickListener(new OnClickListener() {  
 			
 			@Override
 			public void onClick(View v) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½     
 				Intent intent = new Intent(AllSightDetail.this,MainActivity.class);
 				startActivity(intent);
 			}
 		});
- 		
  	}
-	private List<Map<String,Object>> getData() {
+ 	Handler handler = new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				Object scienc;
+				switch (msg.what) {
+				case 1:
+					 scienc=msg.obj;
+					 Map<String, Object> a = (Map<String, Object>)scienc;
+					 dataList.add(a);
+					 Toast.makeText(AllSightDetail.this, msg.toString()+"   "+dataList.get(0).get("sight_view"), Toast.LENGTH_SHORT).show();
+					 //Log.i("tag1",msg.toString());
+					break;
+				case 2:
+					scienc=msg.obj;
+					 Map<String, Object> b = (Map<String, Object>)scienc;
+					 dataList.add(b);
+					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(1).get("sight_view"), Toast.LENGTH_SHORT).show();
+					
+					//Log.i("tag2",msg.toString());
+					break;
+				case 3:
+					scienc=msg.obj;
+					 Map<String, Object> c = (Map<String, Object>)scienc;
+					 dataList.add(c);
+					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(2).get("sight_view"), Toast.LENGTH_SHORT).show();
+					//Log.i("tag3",msg.toString());
+					break;
+				case 4:
+					scienc=msg.obj;
+					 Map<String, Object> d = (Map<String, Object>)scienc;
+					 dataList.add(d);
+					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(3).get("sight_view"), Toast.LENGTH_SHORT).show();
+					//Log.i("tag4",msg.toString());
+					break;
+				case 5:
+					scienc=msg.obj;
+					 Map<String, Object> e = (Map<String, Object>)scienc;
+					 dataList.add(e);
+					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(4).get("sight_view"), Toast.LENGTH_SHORT).show();
+					//Log.i("tag5",msg.toString());
+					break;
+				}
+				super.handleMessage(msg);
+			}
+		};
+	private List<Map<String, Object>> getData(){
+
+		BmobQuery<City> query_city = new BmobQuery<City>();
 		
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
-/*		for(int i = 0;i<20;i++){
-			Map<String, Object> map = new HashMap<String,Object>();
-			map.put("pic", R.drawable.ic_launcher);
-			map.put("text", "Ä½¿ÎÍø"+i);
-			dataList.add(map);
+		city_name = edit_Search1.getText().toString();
+		Toast.makeText(AllSightDetail.this, "------"+city_name, Toast.LENGTH_SHORT).show();
+		
+		query_city.addWhereEqualTo("cityname", city_name);
+		
+		query_city.findObjects(this, new FindListener<City>() {
+
+			@Override
+			public void onError(int arg0, String arg1) {
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				Toast.makeText(AllSightDetail.this,"fail136"+ arg0+" "+arg1,Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onSuccess(List<City> citysList) {
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+				
+				Map<String,Object> city_map = new HashMap<String,Object>();
+				
+				int cityid = citysList.get(0).getId();//cityï¿½ï¿½ï¿½Ðµï¿½id
+				BmobQuery<Scenicroute> query_sroute = new BmobQuery<Scenicroute>();
+				query_sroute.addWhereEqualTo("cityid", cityid);
+				Toast.makeText(AllSightDetail.this,cityid+"====>187",Toast.LENGTH_SHORT).show();
+				
+				query_sroute.findObjects(AllSightDetail.this, new FindListener<Scenicroute>() {
+					
+					@Override
+					public void onSuccess(List<Scenicroute> sroutes) {
+						// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						for(Scenicroute sroute:sroutes){//ï¿½Òµï¿½ï¿½ï¿½Scenicrouteï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+	
+							Toast.makeText(AllSightDetail.this,sroutes.size()+"===>196",Toast.LENGTH_SHORT).show();
+							
+							if(sroute.getOne()!=0){
+								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
+								query_scenic.addWhereEqualTo("id", sroute.getOne());
+								
+								Toast.makeText(AllSightDetail.this,sroute.getOne()+"===>201",Toast.LENGTH_SHORT).show();
+								
+								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
+									@Override
+									public void onError(int arg0, String arg1) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Toast.makeText(AllSightDetail.this,"fail!!"+arg0+arg1, Toast.LENGTH_SHORT).show();
+									}
+									@Override
+									public void onSuccess(List<Scenic> ascenic) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Map<String,Object> city_map = new HashMap<String,Object>();
+										city_map.put("sight_view", ascenic.get(0).getScenicview());
+										city_map.put("sight_name",ascenic.get(0).getScenicname());
+										city_map.put("sight_type",ascenic.get(0).getScenictype());
+										city_map.put("sight_price",ascenic.get(0).getScenicprice());
+										city_map.put("sight_avggrade",ascenic.get(0).getAvggrade());
+										
+										Message msg = new Message();
+										msg.what = 1;
+										msg.obj = city_map;
+										handler.sendMessage(msg);
+										
+										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
+									}
+								});
+							}
+							if(sroute.getTwo()!=0){
+								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
+								query_scenic.addWhereEqualTo("id", sroute.getTwo());
+								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
+									@Override
+									public void onError(int arg0, String arg1) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Log.i("fail!!!!!!!!!183", arg0+" "+arg1);
+									}
+									@Override
+									public void onSuccess(List<Scenic> ascenic) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Map<String,Object> city_map = new HashMap<String,Object>();
+										city_map.put("sight_view", ascenic.get(0).getScenicview());
+										city_map.put("sight_name",ascenic.get(0).getScenicname());
+										city_map.put("sight_type",ascenic.get(0).getScenictype());
+										city_map.put("sight_price",ascenic.get(0).getScenicprice());
+										city_map.put("sight_avggrade",ascenic.get(0).getAvggrade());
+										
+										Message msg = new Message();
+										msg.what = 2;
+										msg.obj = city_map;
+										handler.sendMessage(msg);
+										
+										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
+										}
+								});
+							}
+							if(sroute.getThree()!=0){
+								BmobQuery< Scenic> query_scenic = new BmobQuery<Scenic>();
+								query_scenic.addWhereEqualTo("id",sroute.getThree());
+								Toast.makeText(AllSightDetail.this, sroute.getThree()+"", Toast.LENGTH_SHORT).show();
+								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
+									@Override
+									public void onError(int arg0, String arg1) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Log.i("tag!!!!!!", "209 "+arg0+" "+arg1);
+									}
+									public void onSuccess(List<Scenic> scenic) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Toast.makeText(AllSightDetail.this, scenic.size()+"", Toast.LENGTH_SHORT).show();
+										Map<String,Object> city_map = new HashMap<String,Object>();
+										city_map.put("sight_view", scenic.get(0).getScenicview());
+										city_map.put("sight_name", scenic.get(0).getScenicname());
+										city_map.put("sight_type", scenic.get(0).getScenictype());
+										city_map.put("sight_price", scenic.get(0).getScenicprice());
+										city_map.put("sight_avggrade", scenic.get(0).getAvggrade());
+										
+										Message msg = new Message();
+										msg.what = 3;
+										msg.obj = city_map;
+										handler.sendMessage(msg);
+										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
+										}
+								
+								});
+							}
+							if(sroute.getFour()!=0){
+								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
+								query_scenic.addWhereEqualTo("id", sroute.getFour());
+								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
+									@Override
+									public void onError(int arg0, String arg1) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Log.i("fail!!!!!!!!!236", arg0+" "+arg1);
+									}
+									@Override
+									public void onSuccess(List<Scenic> ascenic) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Map<String,Object> city_map = new HashMap<String,Object>();
+										city_map.put("sight_view", ascenic.get(0).getScenicview());
+										city_map.put("sight_name", ascenic.get(0).getScenicname());
+										city_map.put("sight_type", ascenic.get(0).getScenictype());
+										city_map.put("sight_price", ascenic.get(0).getScenicprice());
+										city_map.put("sight_avggrade", ascenic.get(0).getAvggrade());
+										
+										
+										Message msg = new Message();
+										msg.what = 4;
+										msg.obj = city_map;
+										handler.sendMessage(msg);
+										//Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();*/
+										}
+								});
+							}
+							if(sroute.getFive()!=0){
+								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
+								query_scenic.addWhereEqualTo("id", sroute.getFive());
+								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
+									@Override
+									public void onError(int arg0, String arg1) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Log.i("fail!!!!!!!!!262", arg0+" "+arg1);
+									}
+									@Override
+									public void onSuccess(List<Scenic> ascenic) {
+										// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										Map<String,Object> city_map = new HashMap<String,Object>();
+										city_map.put("sight_view", ascenic.get(0).getScenicview());
+										city_map.put("sight_name",ascenic.get(0).getScenicname());
+										city_map.put("sight_type",ascenic.get(0).getScenictype());
+										city_map.put("sight_price",ascenic.get(0).getScenicprice());
+										city_map.put("sight_avggrade",ascenic.get(0).getAvggrade());
+										
+									/*	Message msg = new Message();
+										msg.what = 5;
+										msg.obj = city_map;
+										handler.sendMessage(msg);
+										
+										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();*/
+									}
+								});
+							}
+							
+							
+						}
+					}
+					@Override
+					public void onError(int arg0, String arg1) {
+						// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						Log.i("fail!!!!!!!!!284", arg0+" "+arg1);
+					}
+				});
+			}
 			
-		}
-		return dataList;*/
-		//BmobQuery<Scenic> 
+		});		
+		
 		return dataList;
 	}
 	
+	@Override
+	public void onClick(View v) {
+		// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		
+		getData();
+		
+/*		for(int i = 0;i<dataList.size();i++){
+			Toast.makeText(AllSightDetail.this,dataList.get(i).get("sight_view")+" "
+					+dataList.get(i).get("sight_name")+dataList.get(i).get("sight_type")
+					+dataList.get(i).get("sight_price")+dataList.get(i).get("sight_avggrade"),Toast.LENGTH_SHORT).show();
+		}*/
+/*		List<Map<String, Object>> list = getData();
+		sadapter = new SimpleAdapter(this, list, R.layout.listview_item,
+ 				new String[]{"sight_view","sight_name","sight_type","sight_price","sight_avggrade",} ,
+ 				new int[]{R.id.sight_view,R.id.sight_name,R.id.sight_type,R.id.sight_price,R.id.sight_avggrade});
+		Toast.makeText(this, list.size()+"====", Toast.LENGTH_SHORT).show();
+		city_listview.setAdapter(sadapter);*/
+		
+	}
 }
+
