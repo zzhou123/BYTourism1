@@ -93,7 +93,7 @@ public class RegistActivity extends BaseActivity{
                 @Override
                 public void onSuccess(List<User> list) {
                    // if (list.get(0).getUsername().equals(username)) {
-                    //Toast.makeText(RegistActivity.this, list.get(0).getUsername(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistActivity.this, list.get(0).getUsername(), Toast.LENGTH_LONG).show();
                     Toast.makeText(RegistActivity.this, "用户昵称已被使用过，请修改用户昵称", Toast.LENGTH_LONG).show();
 
                 }

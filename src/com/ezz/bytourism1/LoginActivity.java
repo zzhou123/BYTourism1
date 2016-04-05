@@ -62,7 +62,7 @@ public class LoginActivity extends BaseActivity{
                         @Override
                         public void onError(int code, String msg) {
                             // TODO Auto-generated method stub
-                            Toast.makeText(LoginActivity.this, "账号或密码输入有误,请检查后输入", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "账号或密码输入有误,请检查后输入"+msg, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }else{
