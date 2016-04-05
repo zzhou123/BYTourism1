@@ -21,9 +21,14 @@
         <activity
             android:name="com.ezz.bytourism1.MainActivity"
             android:label="@string/app_name" >
+          
         </activity>
         <activity android:name=".AllSightDetail">
-           <intent-filter>
+             
+        </activity>
+        <activity android:name=".SightDetail"></activity>
+        <activity android:name="com.ezz.test.Test">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

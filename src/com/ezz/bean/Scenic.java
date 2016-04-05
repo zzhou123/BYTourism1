@@ -1,8 +1,9 @@
 package com.ezz.bean;
 
+import cn.bmob.v3.BmobObject;
 import android.R.integer;
 
-public class Scenic {
+public class Scenic extends BmobObject{
 	private int id;
 	private String scenicname;
 	private String describe;

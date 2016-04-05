@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:showDividers="end"
+            
             >
 
             <Spinner
@@ -76,17 +77,23 @@
                 android:src="@drawable/advertisement"
                 android:scaleType="fitXY" />
         </LinearLayout>
-	<ScrollView 
-	    android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-	    >
+       	<ScrollView 
+			    android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+            
+		 <LinearLayout
+		     android:layout_width="fill_parent"
+		     android:layout_height="321dp" >
 
-        <ListView
-            android:id="@+id/city_listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ListView>
-		</ScrollView>
+				<ListView
+				    android:id="@+id/city_listview"
+				    android:layout_width="fill_parent"
+				    android:layout_height="500dp" >
+
+				</ListView>
+		</LinearLayout>
+				</ScrollView>
+    
     </LinearLayout>
 
 </RelativeLayout>

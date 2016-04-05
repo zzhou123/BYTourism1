@@ -27,11 +27,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -40,7 +43,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AllSightDetail extends Activity implements OnClickListener{
+public class AllSightDetail extends Activity implements OnClickListener,OnItemClickListener{
 	private Button btn_back;
 	private AutoCompleteTextView edit_Search1;
 	private List<String> city_list;
@@ -50,6 +53,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
  	private List<Map<String,Object>> dataList;
  	private Button find_btn;
  	private String city_name;
+ 	private int time;
  	private static final ThreadLocal re = new ThreadLocal();
  	int a = 0;
  	@Override
@@ -68,7 +72,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
  		
  		city_listview = (ListView) findViewById(R.id.city_listview);
  		city_list = new ArrayList<String>();
- 		dataList = new ArrayList<Map<String, Object>>();
+ 	
 
  		city_list.add("北京");
  		city_list.add("上海");
@@ -119,49 +123,59 @@ public class AllSightDetail extends Activity implements OnClickListener{
 				case 1:
 					 scienc=msg.obj;
 					 Map<String, Object> a = (Map<String, Object>)scienc;
-					 dataList.add(a);
-					 Toast.makeText(AllSightDetail.this, msg.toString()+"   "+dataList.get(0).get("sight_view"), Toast.LENGTH_SHORT).show();
-					 //Log.i("tag1",msg.toString());
-					break;
+					 dataList.add(a);		 
+  				     sadapter.notifyDataSetChanged();
+				//	 Toast.makeText(AllSightDetail.this, time+" "+dataList.size()+"   "+msg.toString(), Toast.LENGTH_SHORT).show();
+					 break;
 				case 2:
 					scienc=msg.obj;
 					 Map<String, Object> b = (Map<String, Object>)scienc;
 					 dataList.add(b);
-					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(1).get("sight_view"), Toast.LENGTH_SHORT).show();
-					
-					//Log.i("tag2",msg.toString());
+					 sadapter.notifyDataSetChanged();
+				//	Toast.makeText(AllSightDetail.this, time+" "+dataList.size()+"   "+msg.toString(), Toast.LENGTH_SHORT).show();
+
 					break;
 				case 3:
 					scienc=msg.obj;
 					 Map<String, Object> c = (Map<String, Object>)scienc;
 					 dataList.add(c);
-					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(2).get("sight_view"), Toast.LENGTH_SHORT).show();
+					 sadapter.notifyDataSetChanged();
+		//			Toast.makeText(AllSightDetail.this, time+" "+dataList.size()+"   "+msg.toString(), Toast.LENGTH_SHORT).show();
 					//Log.i("tag3",msg.toString());
+				
 					break;
 				case 4:
 					scienc=msg.obj;
 					 Map<String, Object> d = (Map<String, Object>)scienc;
 					 dataList.add(d);
-					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(3).get("sight_view"), Toast.LENGTH_SHORT).show();
+			//		Toast.makeText(AllSightDetail.this, time+" "+dataList.size()+"   "+msg.toString(), Toast.LENGTH_SHORT).show();
 					//Log.i("tag4",msg.toString());
+					 sadapter.notifyDataSetChanged();
 					break;
 				case 5:
 					scienc=msg.obj;
 					 Map<String, Object> e = (Map<String, Object>)scienc;
 					 dataList.add(e);
-					Toast.makeText(AllSightDetail.this, msg.toString()+" "+dataList.get(4).get("sight_view"), Toast.LENGTH_SHORT).show();
+					 sadapter.notifyDataSetChanged();
+				//	Toast.makeText(AllSightDetail.this, time+" "+dataList.size()+"   "+msg.toString(), Toast.LENGTH_SHORT).show();
 					//Log.i("tag5",msg.toString());
+					
+					
+					break;
+				case 0:
+					/*Toast.makeText(AllSightDetail.this,"ending!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(AllSightDetail.this, "datalist = "+dataList.size(), Toast.LENGTH_SHORT).show();*/
 					break;
 				}
 				super.handleMessage(msg);
 			}
 		};
 	private List<Map<String, Object>> getData(){
-
+		dataList = new ArrayList<Map<String, Object>>();
 		BmobQuery<City> query_city = new BmobQuery<City>();
 		
 		city_name = edit_Search1.getText().toString();
-		Toast.makeText(AllSightDetail.this, "------"+city_name, Toast.LENGTH_SHORT).show();
+	//	Toast.makeText(AllSightDetail.this, "------"+city_name, Toast.LENGTH_SHORT).show();
 		
 		query_city.addWhereEqualTo("cityname", city_name);
 		
@@ -170,7 +184,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
 			@Override
 			public void onError(int arg0, String arg1) {
 				// TODO 自动生成的方法存根
-				Toast.makeText(AllSightDetail.this,"fail136"+ arg0+" "+arg1,Toast.LENGTH_SHORT).show();
+		//		akeText(AllSightDetail.this,"fail136"+ arg0+" "+arg1,Toast.LENGTH_SHORT).show();
 			}
 
 			@Override
@@ -183,28 +197,32 @@ public class AllSightDetail extends Activity implements OnClickListener{
 				int cityid = citysList.get(0).getId();//city表中的id
 				BmobQuery<Scenicroute> query_sroute = new BmobQuery<Scenicroute>();
 				query_sroute.addWhereEqualTo("cityid", cityid);
-				Toast.makeText(AllSightDetail.this,cityid+"====>187",Toast.LENGTH_SHORT).show();
+		//		Toast.makeText(AllSightDetail.this,cityid+"====>187",Toast.LENGTH_SHORT).show();
 				
 				query_sroute.findObjects(AllSightDetail.this, new FindListener<Scenicroute>() {
 					
 					@Override
 					public void onSuccess(List<Scenicroute> sroutes) {
 						// TODO 自动生成的方法存根
-						for(Scenicroute sroute:sroutes){//找到在Scenicroute表下面的路线
-	
-							Toast.makeText(AllSightDetail.this,sroutes.size()+"===>196",Toast.LENGTH_SHORT).show();
+						int l =sroutes.size();
+						for(int i = 0;i<l;i++){//找到在Scenicroute表下面的路线
+							time=0;
+							Scenicroute sroute = sroutes.get(0);
+							
+				//			Toast.makeText(AllSightDetail.this,sroutes.size()+"===>196",Toast.LENGTH_SHORT).show();
 							
 							if(sroute.getOne()!=0){
+								time++;
 								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
 								query_scenic.addWhereEqualTo("id", sroute.getOne());
 								
-								Toast.makeText(AllSightDetail.this,sroute.getOne()+"===>201",Toast.LENGTH_SHORT).show();
+		//						Toast.makeText(AllSightDetail.this,sroute.getOne()+"===>201",Toast.LENGTH_SHORT).show();
 								
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
 									@Override
 									public void onError(int arg0, String arg1) {
 										// TODO 自动生成的方法存根
-										Toast.makeText(AllSightDetail.this,"fail!!"+arg0+arg1, Toast.LENGTH_SHORT).show();
+			//							Toast.makeText(AllSightDetail.this,"fail!!"+arg0+arg1, Toast.LENGTH_SHORT).show();
 									}
 									@Override
 									public void onSuccess(List<Scenic> ascenic) {
@@ -221,11 +239,13 @@ public class AllSightDetail extends Activity implements OnClickListener{
 										msg.obj = city_map;
 										handler.sendMessage(msg);
 										
-										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
+				//						Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
 									}
 								});
+								
 							}
 							if(sroute.getTwo()!=0){
+								time++;
 								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
 								query_scenic.addWhereEqualTo("id", sroute.getTwo());
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
@@ -249,14 +269,16 @@ public class AllSightDetail extends Activity implements OnClickListener{
 										msg.obj = city_map;
 										handler.sendMessage(msg);
 										
-										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
+			//							Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
 										}
 								});
+								
 							}
 							if(sroute.getThree()!=0){
+								time++;
 								BmobQuery< Scenic> query_scenic = new BmobQuery<Scenic>();
 								query_scenic.addWhereEqualTo("id",sroute.getThree());
-								Toast.makeText(AllSightDetail.this, sroute.getThree()+"", Toast.LENGTH_SHORT).show();
+			//					Toast.makeText(AllSightDetail.this, sroute.getThree()+"", Toast.LENGTH_SHORT).show();
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
 									@Override
 									public void onError(int arg0, String arg1) {
@@ -265,7 +287,7 @@ public class AllSightDetail extends Activity implements OnClickListener{
 									}
 									public void onSuccess(List<Scenic> scenic) {
 										// TODO 自动生成的方法存根
-										Toast.makeText(AllSightDetail.this, scenic.size()+"", Toast.LENGTH_SHORT).show();
+						//				Toast.makeText(AllSightDetail.this, scenic.size()+"", Toast.LENGTH_SHORT).show();
 										Map<String,Object> city_map = new HashMap<String,Object>();
 										city_map.put("sight_view", scenic.get(0).getScenicview());
 										city_map.put("sight_name", scenic.get(0).getScenicname());
@@ -277,12 +299,15 @@ public class AllSightDetail extends Activity implements OnClickListener{
 										msg.what = 3;
 										msg.obj = city_map;
 										handler.sendMessage(msg);
-										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
+										
+				//						Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
 										}
 								
 								});
+								
 							}
 							if(sroute.getFour()!=0){
+								time++;
 								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
 								query_scenic.addWhereEqualTo("id", sroute.getFour());
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
@@ -306,11 +331,14 @@ public class AllSightDetail extends Activity implements OnClickListener{
 										msg.what = 4;
 										msg.obj = city_map;
 										handler.sendMessage(msg);
-										//Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();*/
+										
+			//							Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
 										}
 								});
+								
 							}
 							if(sroute.getFive()!=0){
+								time++;
 								BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
 								query_scenic.addWhereEqualTo("id", sroute.getFive());
 								query_scenic.findObjects(AllSightDetail.this, new FindListener<Scenic>() {
@@ -329,18 +357,19 @@ public class AllSightDetail extends Activity implements OnClickListener{
 										city_map.put("sight_price",ascenic.get(0).getScenicprice());
 										city_map.put("sight_avggrade",ascenic.get(0).getAvggrade());
 										
-									/*	Message msg = new Message();
+										Message msg = new Message();
 										msg.what = 5;
 										msg.obj = city_map;
 										handler.sendMessage(msg);
-										
-										Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();*/
+									
+		//								Toast.makeText(AllSightDetail.this,city_map.get("sight_name")+"",Toast.LENGTH_SHORT).show();
 									}
 								});
+								
 							}
-							
-							
+						
 						}
+						
 					}
 					@Override
 					public void onError(int arg0, String arg1) {
@@ -358,21 +387,32 @@ public class AllSightDetail extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
-		
+		dataList = new ArrayList<Map<String, Object>>();
 		getData();
-		
-/*		for(int i = 0;i<dataList.size();i++){
-			Toast.makeText(AllSightDetail.this,dataList.get(i).get("sight_view")+" "
-					+dataList.get(i).get("sight_name")+dataList.get(i).get("sight_type")
-					+dataList.get(i).get("sight_price")+dataList.get(i).get("sight_avggrade"),Toast.LENGTH_SHORT).show();
-		}*/
-/*		List<Map<String, Object>> list = getData();
-		sadapter = new SimpleAdapter(this, list, R.layout.listview_item,
- 				new String[]{"sight_view","sight_name","sight_type","sight_price","sight_avggrade",} ,
+		/*sadapter = new SimpleAdapter(AllSightDetail.this, dataList, R.layout.listview_item,
+ 				new String[]{"sight_view","sight_name","sight_type","sight_price","sight_avggrade"} ,
  				new int[]{R.id.sight_view,R.id.sight_name,R.id.sight_type,R.id.sight_price,R.id.sight_avggrade});
-		Toast.makeText(this, list.size()+"====", Toast.LENGTH_SHORT).show();
-		city_listview.setAdapter(sadapter);*/
+		*/ 
+		sadapter = new MySimpleAdapter(AllSightDetail.this, dataList, R.layout.listview_item,
+ 				new String[]{"sight_view","sight_name","sight_type","sight_price","sight_avggrade"} ,
+ 				new int[]{R.id.sight_view,R.id.sight_name,R.id.sight_type,R.id.sight_price,R.id.sight_avggrade});
 		
+		 city_listview.setAdapter(sadapter);
+		 city_listview.setOnItemClickListener(this);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO 自动生成的方法存根
+		Map<String, Object> text= (Map<String, Object>)city_listview.getItemAtPosition(position);
+		Toast.makeText(this, "position = "+position+" text="+text.get("sight_name")+"",Toast.LENGTH_LONG).show();
+		Intent intent = new Intent(AllSightDetail.this,SightDetail.class);
+		
+		intent.putExtra("sight_name", text.get("sight_name").toString());
+		intent.putExtra("sight_type", text.get("sight_type").toString());
+		intent.putExtra("sight_price", text.get("sight_price").toString());
+		startActivity(intent);
 	}
 }
 
