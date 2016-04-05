@@ -45,4 +45,16 @@ public class BaseActivity  extends Activity{
         return  preference.getString(key, "");
 
     }
+    protected void deletePreference() {
+        // 获取SharedPreference
+        SharedPreferences preference = getSharedPreferences("android",
+                MODE_PRIVATE);
+        // 获取editor
+        SharedPreferences.Editor editor = preference.edit();
+        // 存入数据
+        editor.putString(USER_ID,"");
+        editor.putString(USER_NAME,"");
+        // 提交存入文件中
+        editor.commit();
+    }
 }

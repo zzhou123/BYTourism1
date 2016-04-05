@@ -122,7 +122,8 @@ public class RegistActivity extends BaseActivity{
                             queryId.findObjects(RegistActivity.this, new FindListener<User>() {
                                 @Override
                                 public void onSuccess(List<User> list) {
-                                    String userid = list.get(0).getId();
+                                    String userid1 = list.get(0).getId();
+                                    String userid = userid1.substring(0,userid1.length()-2);
                                     savePreference(USER_ID,userid);
                                     Intent intent = new Intent(RegistActivity.this,Personal_centerActivity.class);  //·½·¨1
                                     startActivity(intent);
