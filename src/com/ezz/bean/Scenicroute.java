@@ -1,8 +1,10 @@
 package com.ezz.bean;
 
+import cn.bmob.v3.BmobObject;
 
 
-public class Scenicroute {
+
+public class Scenicroute extends BmobObject{
 	private int id;
 	private int one;
 	private int two;

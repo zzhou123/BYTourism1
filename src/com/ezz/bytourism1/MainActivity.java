@@ -13,6 +13,7 @@ import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 import android.R.anim;
+import android.R.integer;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -80,8 +81,12 @@ public class MainActivity extends Activity {
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 				// TODO 自动生成的方法存根
 				if(actionId==EditorInfo.IME_ACTION_SEND||(event!=null&&event.getKeyCode()==KeyEvent.KEYCODE_ENTER)){
-					Toast.makeText(MainActivity.this, "开始搜索", Toast.LENGTH_SHORT).show();
-					query();
+					Toast.makeText(MainActivity.this, "准备跳转", Toast.LENGTH_SHORT).show();
+					cityname = csearch.getText().toString();
+					Intent intent = new Intent(MainActivity.this,AllSightDetail.class);
+					intent.putExtra("city_name", cityname);
+					startActivity(intent);
+					//query();
 					return true;
 				}
 				return false;
@@ -92,147 +97,27 @@ public class MainActivity extends Activity {
 		public void query(){
 			//通过搜索栏进行搜索:city表中的cityname-->city表中的id-->scenicroute表中的cityid-->景点id-->scenic表name
 			cityname = csearch.getText().toString();
-			citysid = null;
-			if(csearch.equals("")){
-				return;
-			}
+			
 			BmobQuery<City> query_city = new BmobQuery<City>();
-			query_city.addWhereEqualTo("cityname", cityname);
+			query_city.addWhereEqualTo("cityname",cityname);
 			query_city.findObjects(MainActivity.this, new FindListener<City>() {
-				
+
+				@Override
+				public void onError(int arg0, String arg1) {
+					// TODO 自动生成的方法存根
+					Toast.makeText(MainActivity.this, "传值失败！", Toast.LENGTH_SHORT).show();
+				}
 				@Override
 				public void onSuccess(List<City> fcity) {
 					// TODO 自动生成的方法存根
 					int cityid = fcity.get(0).getId();
-					Toast.makeText(MainActivity.this, fcity.get(0).getId()+"", Toast.LENGTH_SHORT).show();
-					BmobQuery<Scenicroute> query_sroute = new BmobQuery<Scenicroute>();
-					query_sroute.addWhereEqualTo("cityid", cityid);
-					query_sroute.findObjects(MainActivity.this, new FindListener<Scenicroute>() {
-						@Override
-						public void onError(int arg0, String arg1) {
-							// TODO 自动生成的方法存根
-							Toast.makeText(MainActivity.this, "false!", Toast.LENGTH_SHORT).show();
-						}
-						@Override
-						public void onSuccess(List<Scenicroute> fsroutes) {
-							// TODO 自动生成的方法存根
-							String str = "";
-							for(Scenicroute fsroute:fsroutes){
-								if(fsroute.getOne()!=0){
-									str = str+fsroute.getOne();
-									Scenic aScenic = new Scenic();
-									BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
-									query_scenic.addWhereEqualTo("id", fsroute.getOne());
-									query_scenic.findObjects(MainActivity.this, new FindListener<Scenic>() {
-										@Override
-										public void onError(int arg0,String arg1) {
-											// TODO 自动生成的方法存根
-										}
-										@Override
-										public void onSuccess(List<Scenic> fscenics) {
-											// TODO 自动生成的方法存根
-											for(Scenic fscenic:fscenics){
-											Toast.makeText(MainActivity.this, fscenic.getScenicname()
-													+fscenic.getDescribe(),Toast.LENGTH_SHORT).show();
-											}
-										}
-									});
-								}
-								if(fsroute.getTwo()!=0){
-									str = str+fsroute.getTwo();
-									Scenic aScenic = new Scenic();
-									BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
-									query_scenic.addWhereEqualTo("id", fsroute.getTwo());
-									query_scenic.findObjects(MainActivity.this, new FindListener<Scenic>() {
-										@Override
-										public void onError(int arg0,String arg1) {
-											// TODO 自动生成的方法存根
-										}
-										@Override
-										public void onSuccess(List<Scenic> fscenics) {
-											// TODO 自动生成的方法存根
-											for(Scenic fscenic:fscenics){
-											Toast.makeText(MainActivity.this, fscenic.getScenicname()
-													+fscenic.getDescribe(),Toast.LENGTH_SHORT).show();
-											}
-										}
-									});
-								}
-								if(fsroute.getThree()!=0){
-									str = str+fsroute.getThree();
-									Scenic aScenic = new Scenic();
-									BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
-									query_scenic.addWhereEqualTo("id", fsroute.getThree());
-									query_scenic.findObjects(MainActivity.this, new FindListener<Scenic>() {
-										@Override
-										public void onError(int arg0,String arg1) {
-											// TODO 自动生成的方法存根
-										}
-										@Override
-										public void onSuccess(List<Scenic> fscenics) {
-											// TODO 自动生成的方法存根
-											for(Scenic fscenic:fscenics){
-											Toast.makeText(MainActivity.this, fscenic.getScenicname()
-													+fscenic.getDescribe(),Toast.LENGTH_SHORT).show();
-											}
-										}
-									});
-								}
-								if(fsroute.getFour()!=0){
-									str = str+fsroute.getFour();
-									Scenic aScenic = new Scenic();
-									BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
-									query_scenic.addWhereEqualTo("id", fsroute.getFour());
-									query_scenic.findObjects(MainActivity.this, new FindListener<Scenic>() {
-										@Override
-										public void onError(int arg0,String arg1) {
-											// TODO 自动生成的方法存根
-										}
-										@Override
-										public void onSuccess(List<Scenic> fscenics) {
-											// TODO 自动生成的方法存根
-											for(Scenic fscenic:fscenics){
-											Toast.makeText(MainActivity.this, fscenic.getScenicname()
-													+fscenic.getDescribe(),Toast.LENGTH_SHORT).show();
-											}
-										}
-									});
-								}
-								if(fsroute.getFive()!=0){
-									str = str+fsroute.getFive();
-									Scenic aScenic = new Scenic();
-									BmobQuery<Scenic> query_scenic = new BmobQuery<Scenic>();
-									query_scenic.addWhereEqualTo("id", fsroute.getFive());
-									query_scenic.findObjects(MainActivity.this, new FindListener<Scenic>() {
-										@Override
-										public void onError(int arg0,String arg1) {
-											// TODO 自动生成的方法存根
-										}
-										@Override
-										public void onSuccess(List<Scenic> fscenics) {
-											// TODO 自动生成的方法存根
-											for(Scenic fscenic:fscenics){
-											Toast.makeText(MainActivity.this, fscenic.getScenicname()
-													+fscenic.getDescribe(),Toast.LENGTH_SHORT).show();
-											}
-										}
-									});
-								}
-							}
-							Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
-						}
-					});
-					Toast.makeText(MainActivity.this, cityid, Toast.LENGTH_SHORT).show();
-					//Intent intent = new Intent(MainActivity.this,AllSightDetail.class);
-					//intent.putExtra("citys_id", value);
-				}
-				@Override
-				public void onError(int arg0, String arg1) {
-					// TODO 自动生成的方法存根
-					Toast.makeText(MainActivity.this, "false!", Toast.LENGTH_SHORT).show();
+					Intent intent = new Intent(MainActivity.this,AllSightDetail.class);
+					intent.putExtra("city_id", cityid);
+					startActivity(intent);
+					Toast.makeText(MainActivity.this, "传递的值为"+cityid, Toast.LENGTH_SHORT).show();
 				}
 			});
-		
+			
 		}
 		
 }

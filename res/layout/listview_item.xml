@@ -3,40 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
-         <ImageView
-             android:layout_marginLeft="5dp"
-        android:id="@+id/pic_one"
+    <ImageView
+        android:layout_marginLeft="5dp"
+        android:id="@+id/sight_view"
         android:layout_width="60dp"
         android:layout_height="80dp"
         android:src="@drawable/xiamen_three" />
 
      <TextView
-         android:id="@+id/text_scenic1"
+         android:id="@+id/sight_name"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_toRightOf="@+id/pic_one"
+         android:layout_toRightOf="@+id/sight_view"
          android:text="@string/xiamen_university"
          android:layout_marginLeft="8dp"
          android:textColor="#000000"
          android:textSize="18sp" />
 
       <TextView
-          android:id="@+id/textView1"
+          android:id="@+id/sight_type"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/text_scenic1"
-          android:layout_below="@+id/text_scenic1"
+          android:layout_alignLeft="@+id/sight_name"
+          android:layout_below="@+id/sight_name"
           android:layout_marginTop="16dp"
           android:text="@string/cultural_religion" />
 
-      <TextView
-          android:id="@+id/textView2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignBaseline="@+id/textView1"
-          android:layout_alignBottom="@+id/textView1"
-          android:layout_toRightOf="@+id/text_scenic1"
-          android:text="@string/university" />
 
       <ImageView
           android:id="@+id/imagePrice"
@@ -48,7 +40,7 @@
           android:src="@drawable/price" />
 
       <TextView
-          android:id="@+id/textView3"
+          android:id="@+id/sight_price"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_above="@+id/textView2"
@@ -66,18 +58,19 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_alignTop="@+id/imagePrice"
-          android:layout_toRightOf="@+id/textView3"
+          android:layout_toRightOf="@+id/sight_price"
           android:text="起" />
 <!-- style="@style/MyRatingBar" -->
-      <RatingBar
-          android:id="@+id/ratingBar1"
-          
-          android:layout_width="50dp"
-          android:layout_height="20dp"
-          android:layout_below="@+id/pic_one"
-          android:layout_marginTop="42dp"
+
+	 <RatingBar
+          android:id="@+id/sight_avggrade"
+          style="?android:attr/ratingBarStyleSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/sight_type"
+          android:layout_below="@+id/sight_name"
           android:isIndicator="true"
           android:numStars="5"
-          android:rating="4" />
+         /> 
      
 </RelativeLayout>

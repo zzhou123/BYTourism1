@@ -3,6 +3,7 @@
 
     <string name="app_name">ByTourism1</string>
     <string name="sight">景点</string>
+    <string name="message">您对该景点的意见 </string>
     <string name="xiamen_university">厦门大学</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
