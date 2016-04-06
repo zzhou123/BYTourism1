@@ -52,12 +52,13 @@ public class LoginActivity extends BaseActivity{
                         @Override
                         public void onSuccess(List<User> list) {
                             User user = list.get(0);
-                            String id1 = user.getId();
-                            String id = id1.substring(0,id1.length()-2);
+                            Integer id = user.getId();
+                            String username=user.getUsername();
+                            //String id = id1.substring(0,id1.length()-2);
 
-                            if(!id.isEmpty()){
-                                savePreference(USER_ID,id);
-                                savePreference(USER_NAME,usernameStr);
+                            if(!username.isEmpty()){
+                                savePreferenceId(id);
+                                savePreferenceName(usernameStr);
                                 Intent intent = new Intent(LoginActivity.this,Personal_centerActivity.class);  //·½·¨1
                                 startActivity(intent);
                             }

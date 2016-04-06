@@ -21,14 +21,25 @@ public class BaseActivity  extends Activity{
     /**
      * 将此次登陆的账户信息存储下来
      * */
-    protected void savePreference(String key , String value) {
+    protected void savePreferenceName(String value) {
         // 获取SharedPreference
         SharedPreferences preference = getSharedPreferences("android",
                 MODE_PRIVATE);
         // 获取editor
         SharedPreferences.Editor editor = preference.edit();
         // 存入数据
-        editor.putString(key, value);
+        editor.putString(USER_NAME, value);
+        // 提交存入文件中
+        editor.commit();
+    }
+    protected void savePreferenceId(Integer value) {
+        // 获取SharedPreference
+        SharedPreferences preference = getSharedPreferences("android",
+                MODE_PRIVATE);
+        // 获取editor
+        SharedPreferences.Editor editor = preference.edit();
+        // 存入数据
+        editor.putInt(USER_ID, value);
         // 提交存入文件中
         editor.commit();
     }
@@ -37,12 +48,20 @@ public class BaseActivity  extends Activity{
      *
      * @return
      * */
-    protected String getPreference(String key) {
+    protected String getPreferenceName() {
         // 获取SharedPreference
         SharedPreferences preference = getSharedPreferences("android",
                 MODE_PRIVATE);
         // 获取存在SharedPreference中的用户名
-        return  preference.getString(key, "");
+        return  preference.getString(USER_NAME, "");
+
+    }
+    protected Integer getPreferenceId() {
+        // 获取SharedPreference
+        SharedPreferences preference = getSharedPreferences("android",
+                MODE_PRIVATE);
+        // 获取存在SharedPreference中的用户名
+        return  preference.getInt(USER_ID,0);
 
     }
     protected void deletePreference() {
@@ -52,7 +71,7 @@ public class BaseActivity  extends Activity{
         // 获取editor
         SharedPreferences.Editor editor = preference.edit();
         // 存入数据
-        editor.putString(USER_ID,"");
+        editor.putInt(USER_ID,0);
         editor.putString(USER_NAME,"");
         // 提交存入文件中
         editor.commit();

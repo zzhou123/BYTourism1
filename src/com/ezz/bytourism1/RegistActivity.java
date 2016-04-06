@@ -115,16 +115,16 @@ public class RegistActivity extends BaseActivity{
                     userObj.save(RegistActivity.this, new SaveListener() {
                         @Override
                         public void onSuccess() {
-                            savePreference(USER_NAME,username);
+                            savePreferenceName(username);
                             BmobQuery<User> queryId = new BmobQuery<User>();
                             queryId.addWhereEqualTo("username", username);
 
                             queryId.findObjects(RegistActivity.this, new FindListener<User>() {
                                 @Override
                                 public void onSuccess(List<User> list) {
-                                    String userid1 = list.get(0).getId();
-                                    String userid = userid1.substring(0,userid1.length()-2);
-                                    savePreference(USER_ID,userid);
+                                    Integer userid = list.get(0).getId();
+                                    //String userid = userid1.substring(0,userid1.length()-2);
+                                    savePreferenceId(userid);
                                     Intent intent = new Intent(RegistActivity.this,Personal_centerActivity.class);  //方法1
                                     startActivity(intent);
                                     Toast.makeText(RegistActivity.this, "注册成功", Toast.LENGTH_LONG).show();

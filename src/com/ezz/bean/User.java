@@ -1,5 +1,6 @@
 package com.ezz.bean;
 
+import android.os.IInterface;
 import android.util.Log;
 import android.widget.Toast;
 import cn.bmob.v3.Bmob;
@@ -16,11 +17,11 @@ import static android.content.ContentValues.TAG;
  * Created by 37492 on 2016/4/4.
  */
 public class User extends BmobObject{
-    private String id;
+    private Integer id;
     private String username;
     private String password;
     private String realname;
-    private int age;
+    private Integer age;
     private String sex;
     private String headimage;
     private  String label;
@@ -117,7 +118,7 @@ public class User extends BmobObject{
         this.intro = intro;
     }
 
-    public String getId(){
+    public Integer getId(){
         return id;
     }
 

@@ -50,15 +50,15 @@ public class Personal_centerActivity extends BaseActivity {
         updateIn();
     }
     public void updateIn(){
-        if(!getPreference(USER_NAME).equals("")){
-            Toast.makeText(Personal_centerActivity.this, getResources().getString(R.string.signin)+getPreference(USER_NAME), Toast.LENGTH_LONG).show();
-            username.setText(getPreference(USER_NAME));
-            userid.setText("365354"+getPreference(USER_ID));
+        if(!getPreferenceName().equals("")){
+           // Toast.makeText(Personal_centerActivity.this, getResources().getString(R.string.signin)+getPreferenceName(), Toast.LENGTH_LONG).show();
+            username.setText(getPreferenceName());
+            userid.setText("365354"+getPreferenceId());
             yep.setVisibility(View.GONE);
             re.setVisibility(View.VISIBLE);
         }
         else{
-            Toast.makeText(Personal_centerActivity.this, getResources().getString(R.string.signout)+getPreference(USER_NAME), Toast.LENGTH_LONG).show();
+            //Toast.makeText(Personal_centerActivity.this, getResources().getString(R.string.signout)+getPreferenceName(), Toast.LENGTH_LONG).show();
             username.setText(getResources().getString(R.string.signout));
             userid.setText(getResources().getString(R.string.signout));
             yep.setVisibility(View.VISIBLE);
