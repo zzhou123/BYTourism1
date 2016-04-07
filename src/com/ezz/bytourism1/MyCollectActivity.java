@@ -20,7 +20,7 @@ public class MyCollectActivity extends BaseActivity {
 //        userid.setText("365354"+getPreferenceId());
     }
     public void turnToRoutes(View v){
-        Intent intent = new Intent(MyCollectActivity.this,RoutesCollectActivity.class);
+        Intent intent = new Intent(MyCollectActivity.this,RoutesCollectList.class);
         startActivity(intent);
     }
 

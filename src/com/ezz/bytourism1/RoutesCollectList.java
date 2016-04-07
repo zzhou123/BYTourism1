@@ -24,6 +24,7 @@ public class RoutesCollectList extends Activity implements OnItemClickListener,O
     private ArrayAdapter< String> arr_adapter;
     private SimpleAdapter simp_adapter;
     private List<Map<String, Object>> dataList;
+    private String[] arr_data = {"厦门大学一日游路线","鼓浪屿两日游路线","曾厝垵一日游","胡里山炮台一日游","厦门野生动物园一日游"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO 自动生成的方法存根
@@ -40,7 +41,7 @@ public class RoutesCollectList extends Activity implements OnItemClickListener,O
 		 * 3.视图(ListView)加载适配器
 		 * listView.setAapter(arr_adapter)
 		 * */
-        String[] arr_data = {"慕课网1","慕课网2","慕课网3","慕课网4","慕课网5"};
+
         dataList = new ArrayList<Map<String,Object>>();
         arr_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arr_data);
         //	listView.setAdapter(arr_adapter);
@@ -62,10 +63,10 @@ public class RoutesCollectList extends Activity implements OnItemClickListener,O
         listView.setOnScrollListener(this);
     }
     private List<Map<String, Object>> getData(){
-        for(int i = 0;i<20;i++){
+        for(int i = 0;i<5;i++){
             Map<String, Object> map = new HashMap<String,Object>();
             map.put("pic", R.drawable.ic_launcher);
-            map.put("text", "慕课网"+i);
+            map.put("text", arr_data[i]);
             dataList.add(map);
 
         }
