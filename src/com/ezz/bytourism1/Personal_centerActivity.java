@@ -65,6 +65,9 @@ public class Personal_centerActivity extends BaseActivity {
             re.setVisibility(View.GONE);
         }
     }
-
+    public void turnToCollect(View v){
+        Intent intent = new Intent(Personal_centerActivity.this,MyCollectActivity.class);
+        startActivity(intent);
+    }
 
 }

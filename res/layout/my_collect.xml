@@ -31,36 +31,27 @@
         
         >
 
-        <Button
-            android:id="@+id/buttoninvite"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:background="#CFCFCF"
-            android:gravity="center"
-            android:text="@string/invite" />
-
-        <Button
-            android:id="@+id/buttonscenic"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:background="#CFCFCF"
-            android:gravity="center"
-            android:text="@string/scenic" />
-
-        <Button
-            android:id="@+id/buttonpath"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="19dp"
-            android:background="#CFCFCF"
-            android:gravity="center"
-            android:text="@string/path" />
-
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="98dp" android:id="@+id/relativeLayout"
+                        android:layout_alignParentTop="true" android:layout_alignParentStart="true">
+            <ImageView android:id="@+id/imageView6" android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+                       android:src="@drawable/ic_launcher"/>
+            <TextView android:id="@+id/textView" android:layout_width="97dp" android:layout_height="wrap_content"
+                      android:text="昵  称：" android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:layout_alignParentTop="true" android:layout_toEndOf="@+id/imageView6"
+                      android:layout_marginStart="30dp"/>
+            <TextView android:id="@+id/textView13" android:layout_width="97dp" android:layout_height="wrap_content"
+                      android:text="账   号：" android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:layout_below="@+id/imageView6" android:layout_alignStart="@+id/textView"/>
+            <TextView android:id="@+id/nameview" android:layout_width="110dp" android:layout_height="wrap_content"
+                      android:text="未登录" android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:layout_gravity="center_horizontal" android:layout_alignParentTop="true"
+                      android:layout_toEndOf="@+id/textView" android:layout_marginStart="35dp"/>
+            <TextView android:id="@+id/idview" android:layout_width="110dp" android:layout_height="wrap_content"
+                      android:text="未登录" android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:layout_gravity="center_horizontal" android:layout_alignTop="@+id/textView13"
+                      android:layout_alignStart="@+id/nameview"/>
+        </RelativeLayout>
     </RelativeLayout>
     
     <RelativeLayout
@@ -72,25 +63,50 @@
         android:gravity="top" >
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="@string/gragshop" />
-
-         <Button
-             android:id="@+id/button2"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/button1"
-             android:layout_marginLeft="5dp"
-             android:layout_marginRight="5dp"
-             android:layout_marginTop="5dp"
-             android:text="@string/ticket" />
+                android:id="@+id/button1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/gragshop"
+                android:layout_alignParentBottom="true"/>
+        <Button
+                android:id="@+id/buttoninvite"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#CFCFCF"
+                android:gravity="center"
+                android:text="@string/invite"
+                android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+        <Button
+                android:id="@+id/routes"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="19dp"
+                android:background="#CFCFCF"
+                android:gravity="center"
+                android:text="@string/path"
+                android:layout_alignParentTop="true" android:layout_alignStart="@+id/button1"
+                android:onClick="turnToRoutes"/>
+        <Button
+                android:id="@+id/buttonscenic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:background="#CFCFCF"
+                android:gravity="center"
+                android:text="@string/scenic"
+                android:layout_alignParentTop="true" android:layout_alignEnd="@+id/button1"/>
 
     </RelativeLayout>
+    <Button
+            android:id="@+id/button2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="@string/ticket"
+            android:layout_below="@+id/relative5"/>
 
 </RelativeLayout>
  

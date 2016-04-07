@@ -37,8 +37,8 @@
 
 
   <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+          android:layout_width="fill_parent"
+          android:layout_height="98dp" android:id="@+id/infor">
 
       <ImageView
         android:id="@+id/imageView1"
@@ -78,7 +78,7 @@
              android:layout_width="fill_parent"
              android:layout_height="60dp"
 
-             android:layout_marginTop="17dp" android:layout_weight="0.2">
+             android:layout_marginTop="17dp" android:layout_weight="0.11">
 
          <Button
              android:id="@+id/buttoninvite"
@@ -100,15 +100,15 @@
              android:text="我的好友" />
 
          <Button
-             android:id="@+id/buttonpath"
-             android:layout_width="50dp"
-             android:layout_height="50dp"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:layout_marginLeft="19dp"
-             android:background="#CFCFCF"
-             android:gravity="center"
-             android:text="我的收藏" />
+                 android:id="@+id/mycollect"
+                 android:layout_width="50dp"
+                 android:layout_height="50dp"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginLeft="19dp"
+                 android:background="#CFCFCF"
+                 android:gravity="center"
+                 android:text="我的收藏" android:onClick="turnToCollect"/>
         <Button
                 android:id="@+id/button1"
                 android:layout_width="fill_parent"
